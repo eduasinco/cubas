@@ -1,22 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {CubasService} from '../services/cubas.service';
+import {MatTableDataSource} from '@angular/material/table';
 
 export interface CubaElement {
+  image: string;
   volume: number;
   quantity: number;
-}
-
-export interface CubaPaginator {
-  docs: CubaElement[];
-  totalDocs: 0;
-  limit: 25;
-  totalPages: 1;
-  page: null;
-  pagingCounter: null;
-  hasPrevPage: boolean;
-  hasNextPage: boolean;
-  prevPage: boolean;
-  nextPage: boolean;
+  usage: string;
 }
 
 @Component({
@@ -25,10 +15,13 @@ export interface CubaPaginator {
   styleUrls: ['./cubas.component.css']
 })
 export class CubasComponent implements OnInit {
-  displayedColumns: string[] = ['volume', 'quantity'];
+  displayedColumns: string[] = ['image', 'volume', 'usage', 'quantity'];
   cubas: CubaElement[] = [];
 
-  constructor(private cubasService: CubasService) {}
+  constructor(
+    private cubasService: CubasService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.getCubas();
@@ -36,6 +29,15 @@ export class CubasComponent implements OnInit {
 
   getCubas() {
     this.cubasService.getCubas()
-      .subscribe((data) => this.cubas = data.docs);
+      .subscribe((data) => this.cubas = data);
+  }
+
+  addCuba() {
+    this.cubasService.addCuba({image: '', volume: Math.floor(Math.random() * Math.floor(100)), quantity: 120, usage: 'Stones'})
+      .subscribe(cuba => {
+        this.cubas = new MatTableDataSource([cuba]);
+        this.cubas.splice(0, 0, cuba);
+        this.cdr.detectChanges();
+      });
   }
 }

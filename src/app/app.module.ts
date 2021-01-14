@@ -17,6 +17,9 @@ import { CubasComponent } from './cubas/cubas.component';
 import { CubaComponent } from './cubas/cuba/cuba.component';
 import { MatTableModule } from '@angular/material/table';
 import {HttpClientModule} from '@angular/common/http';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import {CubasTableComponent} from './cubas-table/cubas-table.component';
 
 const routes: Routes = [
   {
@@ -34,7 +37,7 @@ const routes: Routes = [
   },
   {
     path: 'cubas',
-    component: CubasComponent,
+    component: CubasTableComponent,
     children: [
       {
         path: 'cuba',
@@ -52,7 +55,8 @@ const routes: Routes = [
     HomeComponent,
     AccountComponent,
     CubasComponent,
-    CubaComponent
+    CubaComponent,
+    CubasTableComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +72,9 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       enableTracing: true,
       useHash: true
-    })
+    }),
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
