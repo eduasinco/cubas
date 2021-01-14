@@ -1,24 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import {CubasService} from '../services/cubas.service';
 
 export interface CubaElement {
-  image: string;
   volume: number;
-  usage: string;
   quantity: number;
 }
 
-const ELEMENT_DATA: CubaElement[] = [
-  {image: 'assets/images/cuba.png', volume: 4, usage: 'Hydrogen', quantity: 1},
-  {image: 'assets/images/cuba.png', volume: 4, usage: 'Lithium', quantity: 6},
-  {image: 'assets/images/cuba.png', volume: 2, usage: 'Helium', quantity: 4},
-  {image: 'assets/images/cuba.png', volume: 4, usage: 'Beryllium', quantity: 9},
-  {image: 'assets/images/cuba.png', volume: 8, usage: 'Boron', quantity: 10},
-  {image: 'assets/images/cuba.png', volume: 6, usage: 'Carbon', quantity: 12},
-  {image: 'assets/images/cuba.png', volume: 7, usage: 'Nitrogen', quantity: 14},
-  {image: 'assets/images/cuba.png', volume: 8, usage: 'Oxygen', quantity: 15},
-  {image: 'assets/images/cuba.png', volume: 1, usage: 'Fluorine', quantity: 18},
-  {image: 'assets/images/cuba.png', volume: 10, usage: 'Neon', quantity: 20},
-];
+export interface CubaPaginator {
+  docs: CubaElement[];
+  totalDocs: 0;
+  limit: 25;
+  totalPages: 1;
+  page: null;
+  pagingCounter: null;
+  hasPrevPage: boolean;
+  hasNextPage: boolean;
+  prevPage: boolean;
+  nextPage: boolean;
+}
 
 @Component({
   selector: 'app-cubas',
@@ -26,12 +25,17 @@ const ELEMENT_DATA: CubaElement[] = [
   styleUrls: ['./cubas.component.css']
 })
 export class CubasComponent implements OnInit {
-  displayedColumns: string[] = ['image', 'volume', 'usage', 'quantity'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['volume', 'quantity'];
+  cubas: CubaElement[] = [];
 
-  constructor() { }
+  constructor(private cubasService: CubasService) {}
 
   ngOnInit(): void {
+    this.getCubas();
   }
 
+  getCubas() {
+    this.cubasService.getCubas()
+      .subscribe((data) => this.cubas = data.docs);
+  }
 }

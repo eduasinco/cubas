@@ -1,21 +1,25 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
+<button mat-button>
+  + Añadir cuba
+</button>
 
-  <ng-container matColumnDef="image">
-    <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let element" style="width: 70px">
-      <img [src]="element.image" alt="" />
-    </td>
-  </ng-container>
+<table mat-table [dataSource]="cubas" class="mat-elevation-z0">
+
+<!--  <ng-container matColumnDef="image">-->
+<!--    <th mat-header-cell *matHeaderCellDef></th>-->
+<!--    <td mat-cell *matCellDef="let element" style="width: 70px">-->
+<!--      <img [src]="element.image" alt="" />-->
+<!--    </td>-->
+<!--  </ng-container>-->
 
   <ng-container matColumnDef="volume">
     <th mat-header-cell *matHeaderCellDef> Volume </th>
     <td mat-cell *matCellDef="let element"> {{element.volume}} m3 </td>
   </ng-container>
 
-  <ng-container matColumnDef="usage">
-    <th mat-header-cell *matHeaderCellDef> Usage </th>
-    <td mat-cell *matCellDef="let element"> {{element.usage}} </td>
-  </ng-container>
+<!--  <ng-container matColumnDef="usage">-->
+<!--    <th mat-header-cell *matHeaderCellDef> Usage </th>-->
+<!--    <td mat-cell *matCellDef="let element"> {{element.usage}} </td>-->
+<!--  </ng-container>-->
 
   <ng-container matColumnDef="quantity">
     <th mat-header-cell *matHeaderCellDef> Quantity </th>

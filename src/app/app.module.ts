@@ -16,6 +16,7 @@ import { AccountComponent } from './account/account.component';
 import { CubasComponent } from './cubas/cubas.component';
 import { CubaComponent } from './cubas/cuba/cuba.component';
 import { MatTableModule } from '@angular/material/table';
+import {HttpClientModule} from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -63,6 +64,7 @@ const routes: Routes = [
     MatIconModule,
     MatListModule,
     MatTableModule,
+    HttpClientModule,
     RouterModule.forRoot(routes, {
       enableTracing: true,
       useHash: true
