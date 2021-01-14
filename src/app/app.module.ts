@@ -12,9 +12,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {RouterModule, Routes} from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { ElementsComponent } from './elements/elements.component';
 import { AccountComponent } from './account/account.component';
-import { AddElementComponent } from './add-element/add-element.component';
+import { CubasComponent } from './cubas/cubas.component';
+import { CubaComponent } from './cubas/cuba/cuba.component';
+import { MatTableModule } from '@angular/material/table';
 
 const routes: Routes = [
   {
@@ -31,12 +32,12 @@ const routes: Routes = [
     component: AccountComponent,
   },
   {
-    path: 'elements',
-    component: ElementsComponent,
+    path: 'cubas',
+    component: CubasComponent,
     children: [
       {
-        path: 'add',
-        component: AddElementComponent,
+        path: 'cuba',
+        component: CubaComponent,
       },
     ]
   }
@@ -48,9 +49,9 @@ const routes: Routes = [
     AppComponent,
     MainNavComponent,
     HomeComponent,
-    ElementsComponent,
     AccountComponent,
-    AddElementComponent
+    CubasComponent,
+    CubaComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +62,7 @@ const routes: Routes = [
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatTableModule,
     RouterModule.forRoot(routes, {
       enableTracing: true,
       useHash: true
