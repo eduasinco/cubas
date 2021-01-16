@@ -23,20 +23,26 @@ import {MatInputModule} from '@angular/material/input';
 import {LoginComponent} from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {AuthGuardService} from './services/auth-guard.service';
 
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: 'home'
+    component: HomeComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'cubas',
     component: CubasComponent,
+    canActivate: [AuthGuardService],
     children: [
       {
         path: 'cuba',
@@ -77,7 +83,7 @@ const routes: Routes = [
     }),
     MatPaginatorModule,
     MatSortModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
   providers: [
     {provide: ErrorHandler, useClass: AppErrorHandler}

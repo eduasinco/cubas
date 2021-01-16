@@ -1,7 +1,7 @@
 import {AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {ZipcodeService} from '../../services/fake';
+import {ZipcodeService} from '../../mock/fake';
 
 export class UsernameValidators {
   static cannotContainSpace(control: AbstractControl) : ValidationErrors | null {

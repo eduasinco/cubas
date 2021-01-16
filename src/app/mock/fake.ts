@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, ValidationErrors} from '@angular/forms';
-import {Observable, of} from 'rxjs';
-import {delay, map} from 'rxjs/operators';
+import {of} from 'rxjs';
+import {delay} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
