@@ -1,0 +1,21 @@
+<form [formGroup]="form">
+  <mat-form-field [formGroup]="form" appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Email" [formControl]="email">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-error *ngIf="email.errors?.required">Email required</mat-error>
+    <mat-error *ngIf="email.errors?.minlength">Email min len</mat-error>
+    <mat-error *ngIf="email.errors?.cannotContainSpace">Email should not contain space</mat-error>
+    <mat-error *ngIf="email.errors?.shouldBeUnique">Email should be unique</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input matInput placeholder="Password" [formControl]="password">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-error *ngIf="password.errors?.required">Password required</mat-error>
+    <mat-error *ngIf="password.errors?.minlength">Password min len</mat-error>
+  </mat-form-field>
+  <button mat-button type="submit">Basic</button>
+</form>
+
+

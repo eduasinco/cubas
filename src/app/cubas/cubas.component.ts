@@ -1,6 +1,5 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Cuba, CubasService} from '../services/cubas.service';
-import {MatTableDataSource} from '@angular/material/table';
 import {AppError} from '../common/app-error';
 import {BadInputError} from '../common/bad-input-error';
 

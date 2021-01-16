@@ -12,15 +12,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {RouterModule, Routes} from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { AccountComponent } from './account/account.component';
 import { CubasComponent } from './cubas/cubas.component';
 import { CubaComponent } from './cubas/cuba/cuba.component';
 import { MatTableModule } from '@angular/material/table';
 import {HttpClientModule} from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import {CubasTableComponent} from './cubas-table/cubas-table.component';
 import {AppErrorHandler} from './common/app-error-handler';
+import {MatInputModule} from '@angular/material/input';
+import {LoginComponent} from './login/login.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -33,12 +34,8 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'account',
-    component: AccountComponent,
-  },
-  {
     path: 'cubas',
-    component: CubasTableComponent,
+    component: CubasComponent,
     children: [
       {
         path: 'cuba',
@@ -54,10 +51,10 @@ const routes: Routes = [
     AppComponent,
     MainNavComponent,
     HomeComponent,
-    AccountComponent,
     CubasComponent,
     CubaComponent,
-    CubasTableComponent
+    LoginComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +66,10 @@ const routes: Routes = [
     MatIconModule,
     MatListModule,
     MatTableModule,
+    MatInputModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes, {
       enableTracing: true,
       useHash: true
@@ -80,6 +80,8 @@ const routes: Routes = [
   providers: [
     {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
