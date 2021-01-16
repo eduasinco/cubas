@@ -6,7 +6,7 @@
     <mat-error *ngIf="email.errors?.required">Email required</mat-error>
     <mat-error *ngIf="email.errors?.minlength">Email min len</mat-error>
     <mat-error *ngIf="email.errors?.cannotContainSpace">Email should not contain space</mat-error>
-    <mat-error *ngIf="email.errors?.shouldBeUnique">Email should be unique</mat-error>
+    <mat-error *ngIf="email.errors?.invalidAsync">Email should be unique</mat-error>
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Password</mat-label>
@@ -15,7 +15,16 @@
     <mat-error *ngIf="password.errors?.required">Password required</mat-error>
     <mat-error *ngIf="password.errors?.minlength">Password min len</mat-error>
   </mat-form-field>
+  <button
+    *ngIf="email.status !== 'PENDING';else loading"
+    [disabled]="email.invalid"
+    mat-stroked-button
+    color="primary"
+  > Submit </button>
   <button mat-button type="submit">Basic</button>
 </form>
+<ng-template #loading>
+  <mat-spinner></mat-spinner>
+</ng-template>
 
 

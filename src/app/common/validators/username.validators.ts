@@ -1,4 +1,7 @@
-import {AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
+import {AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {ZipcodeService} from '../../services/fake';
 
 export class UsernameValidators {
   static cannotContainSpace(control: AbstractControl) : ValidationErrors | null {
@@ -9,18 +12,14 @@ export class UsernameValidators {
       return null;
     }
   }
-
-  static shouldBeUnique(control: AbstractControl): Promise<ValidationErrors | null> {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (control.value === 'edu') {
-          resolve({
-            shouldBeUnique: true
-          });
-        } else {
-          resolve(null);
-        }
-      }, 2000);
-    });
+  static uniqueUsernameValidator(zipcodeService: ZipcodeService): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors> => {
+      return zipcodeService.fakeHttp(control.value).pipe(
+        map((result: boolean) => result ? null : {invalidAsync: true})
+      );
+    };
   }
+}
+export class ZipcodeValidator {
+
 }

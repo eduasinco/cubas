@@ -22,6 +22,7 @@ import {AppErrorHandler} from './common/app-error-handler';
 import {MatInputModule} from '@angular/material/input';
 import {LoginComponent} from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 const routes: Routes = [
   {
@@ -75,7 +76,8 @@ const routes: Routes = [
       useHash: true
     }),
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     {provide: ErrorHandler, useClass: AppErrorHandler}
