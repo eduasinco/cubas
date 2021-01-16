@@ -31,7 +31,7 @@ export class AuthService {
 
   isLoggedIn() {
     const helper = new JwtHelperService();
-    return helper.isTokenExpired(localStorage.getItem('token'));
+    return !helper.isTokenExpired(localStorage.getItem('token'));
   }
 
   get currentUser() {
