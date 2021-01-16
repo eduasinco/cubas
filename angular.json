@@ -122,5 +122,8 @@
       }
     }
   },
-  "defaultProject": "cubas"
+  "defaultProject": "cubas",
+  "cli": {
+    "analytics": "d02cf621-bb5f-4bb1-8011-91669b7c3a7e"
+  }
 }

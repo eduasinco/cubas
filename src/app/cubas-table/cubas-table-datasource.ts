@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
+import {CubasService} from '../services/cubas.service';
 
 // TODO: Replace this with your own data model type
 export interface CubasTableItem {
@@ -44,7 +45,7 @@ export class CubasTableDataSource extends DataSource<CubasTableItem> {
   paginator: MatPaginator;
   sort: MatSort;
 
-  constructor() {
+  constructor(private cubasService: CubasService) {
     super();
   }
 

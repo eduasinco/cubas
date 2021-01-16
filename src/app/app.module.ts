@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +20,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {CubasTableComponent} from './cubas-table/cubas-table.component';
+import {AppErrorHandler} from './common/app-error-handler';
 
 const routes: Routes = [
   {
@@ -76,7 +77,9 @@ const routes: Routes = [
     MatPaginatorModule,
     MatSortModule
   ],
-  providers: [],
+  providers: [
+    {provide: ErrorHandler, useClass: AppErrorHandler}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

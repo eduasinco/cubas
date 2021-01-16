@@ -29,15 +29,15 @@ export class CubasTableComponent implements AfterViewInit, OnInit {
 
   getCubas() {
     this.cubasService.getCubas()
-      .subscribe((data) => this.dataSource = new CubasTableDataSource(data));
+      .subscribe((data) => this.dataSource = new CubasTableDataSource());
   }
 
   addCuba() {
     this.cubasService.addCuba({image: '', volume: Math.floor(Math.random() * Math.floor(100)), quantity: 120, usage: 'Stones'})
       .subscribe(cuba => {
-        this.cubas.splice(0, 0, cuba);
-        this.cubas = new CubasTableDataSource();
-        this.cdr.detectChanges();
+        // this.cubas.splice(0, 0, cuba);
+        // this.cubas = new CubasTableDataSource();
+        // this.cdr.detectChanges();
       });
   }
 

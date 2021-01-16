@@ -1,13 +1,8 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {CubasService} from '../services/cubas.service';
+import {Cuba, CubasService} from '../services/cubas.service';
 import {MatTableDataSource} from '@angular/material/table';
-
-export interface CubaElement {
-  image: string;
-  volume: number;
-  quantity: number;
-  usage: string;
-}
+import {AppError} from '../common/app-error';
+import {BadInputError} from '../common/bad-input-error';
 
 @Component({
   selector: 'app-cubas',
@@ -16,7 +11,7 @@ export interface CubaElement {
 })
 export class CubasComponent implements OnInit {
   displayedColumns: string[] = ['image', 'volume', 'usage', 'quantity'];
-  cubas: CubaElement[] = [];
+  cubas: Cuba[] = [];
 
   constructor(
     private cubasService: CubasService,
@@ -29,15 +24,20 @@ export class CubasComponent implements OnInit {
 
   getCubas() {
     this.cubasService.getCubas()
-      .subscribe((data) => this.cubas = data);
+      .subscribe(
+        (data) => this.cubas = data,
+        (error: AppError) => {
+          if (error instanceof BadInputError) {
+            // Handle bad input
+          } else {
+            throw error;
+          }
+        });
   }
 
   addCuba() {
     this.cubasService.addCuba({image: '', volume: Math.floor(Math.random() * Math.floor(100)), quantity: 120, usage: 'Stones'})
       .subscribe(cuba => {
-        this.cubas = new MatTableDataSource([cuba]);
-        this.cubas.splice(0, 0, cuba);
-        this.cdr.detectChanges();
       });
   }
 }
